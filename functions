@@ -16,5 +16,8 @@ function execute_hooks() {
     exit 0
   fi
   echo "       $hooks_path file found. Running it ..."
-  dokku run $APP $hooks_path
+  # dokku run $APP $hooks_path
+  dokku run $APP cat $hooks_path | while read line; do
+    eval $line
+  done
 }
