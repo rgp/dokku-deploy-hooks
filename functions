@@ -18,6 +18,6 @@ function execute_hooks() {
   echo "       $hooks_path file found. Running it ..."
   # dokku run $APP $hooks_path
   dokku run $APP cat $hooks_path | while read line; do
-    eval $line
+    eval $(echo $line | tr '\n\r' '  ')
   done
 }
